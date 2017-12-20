@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ChurrascoManager.DAL
 {
@@ -26,12 +27,12 @@ namespace ChurrascoManager.DAL
             #endregion
 
             #region Events
-            string defaultDescriptionOfEvent = "Vamos comprar as coisas tudo no mercado";
+            string defaultObservationOfEvent = "Vamos comprar as coisas tudo no mercado";
             var events = new List<Event>
             {
-                new Event { Date = DateTime.Parse("2017-12-13"), Title = "Churraso final de ano", Description = defaultDescriptionOfEvent },
-                new Event { Date = DateTime.Parse("2018-01-05"), Title = "Churraso de ano novo", Description = defaultDescriptionOfEvent },
-                new Event { Date = DateTime.Parse("2018-04-17"), Title = "Aniversário do Fabian", Description = defaultDescriptionOfEvent },
+                new Event { Date = DateTime.Parse("2017-12-13"), Description = "Churraso final de ano", Observation = defaultObservationOfEvent },
+                new Event { Date = DateTime.Parse("2018-01-05"), Description = "Churraso de ano novo", Observation = defaultObservationOfEvent },
+                new Event { Date = DateTime.Parse("2018-04-17"), Description = "Aniversário do Fabian", Observation = defaultObservationOfEvent },
             };
 
             // company month birthdays
@@ -41,8 +42,8 @@ namespace ChurrascoManager.DAL
                 events.Add(new Event
                 {
                     Date = Helpers.hDateTime.GetLastFridayOfTheMonth(DateTime.Parse(dateToParse)),
-                    Title = "Churraso aniversariantes do mês",
-                    Description = defaultDescriptionOfEvent
+                    Description = "Churraso aniversariantes do mês",
+                    Observation = defaultObservationOfEvent
                 });
             }
             events.ForEach(e => context.Events.Add(e));
@@ -55,7 +56,8 @@ namespace ChurrascoManager.DAL
             foreach (var item in events)
             {
                 // vamos randomizar a quantidade de participantes em cada evento
-                var participants = persons.Take(new Random().Next(persons.Count));
+                Random random = new Random();
+                var participants = persons.Take(random.Next(3, persons.Count));
 
                 foreach (var person in participants)
                 {
@@ -63,8 +65,9 @@ namespace ChurrascoManager.DAL
                     {
                         EventID = item.ID,
                         PersonID = person.ID,
-                        Paid = new Random().Next(100) < 50,
-                        Drink = new Random().Next(100) < 50,
+                        Paid = random.Next(2) == 0,
+                        Drink = random.Next(2) == 0,
+                        Amount = random.Next(10, 60)
                     });
                 }
             }

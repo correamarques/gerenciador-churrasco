@@ -7,10 +7,11 @@ namespace ChurrascoManager.Models
     public class Event
     {
         public int ID { get; set; }
-        [Display(Name = "Título")]
-        public string Title { get; set; }
         [Display(Name = "Descrição")]
         public string Description { get; set; }
+        [Display(Name = "Observação"), DataType(DataType.MultilineText)]
+        public string Observation { get; set; }
+
         [Display(Name = "Data"), DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
 
