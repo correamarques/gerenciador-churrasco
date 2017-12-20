@@ -40,8 +40,9 @@ namespace ChurrascoManager.Controllers
         // GET: Enrollments/Create
         public ActionResult Create()
         {
-            ViewBag.EventID = new SelectList(db.Events, "ID", "Description");
-            ViewBag.PersonID = new SelectList(db.Persons, "ID", "Name");
+            ViewBag.EventList = new SelectList(db.Events, "ID", "Description", Request.QueryString["e"]);
+            ViewBag.PersonList = new SelectList(db.Persons, "ID", "Name", Request.QueryString["p"]);
+
             return View();
         }
 
