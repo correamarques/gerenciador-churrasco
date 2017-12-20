@@ -38,9 +38,9 @@ namespace ChurrascoManager.DAL
             string defaultObservationOfEvent = lorem.ToString();
             var events = new List<Event>
             {
-                new Event { Date = DateTime.Parse("2017-12-13"), Description = "Churraso final de ano", Observation = defaultObservationOfEvent, Amount = random.Next(120, 380) },
-                new Event { Date = DateTime.Parse("2018-01-05"), Description = "Churraso de ano novo", Observation = defaultObservationOfEvent, Amount = random.Next(120, 380) },
-                new Event { Date = DateTime.Parse("2018-04-17"), Description = "Aniversário do Fabian", Observation = defaultObservationOfEvent, Amount = random.Next(120, 380) },
+                new Event { Date = DateTime.Parse("2017-12-13"), Description = "Churraso final de ano", Observation = defaultObservationOfEvent, SpentDrink = random.Next(120, 380), SpentFood = random.Next(120, 380) },
+                new Event { Date = DateTime.Parse("2018-01-05"), Description = "Churraso de ano novo", Observation = defaultObservationOfEvent, SpentDrink = random.Next(120, 380), SpentFood = random.Next(120, 380) },
+                new Event { Date = DateTime.Parse("2018-04-17"), Description = "Aniversário do Fabian", Observation = defaultObservationOfEvent, SpentDrink = random.Next(120, 380), SpentFood = random.Next(120, 380) },
             };
 
             // company month birthdays
@@ -52,7 +52,8 @@ namespace ChurrascoManager.DAL
                     Date = Helpers.hDateTime.GetLastFridayOfTheMonth(DateTime.Parse(dateToParse)),
                     Description = "Churraso aniversariantes do mês",
                     Observation = defaultObservationOfEvent,
-                    Amount = random.Next(120, 380)
+                    SpentDrink = random.Next(120, 380),
+                    SpentFood = random.Next(120, 380)
                 });
             }
             events.ForEach(e => context.Events.Add(e));

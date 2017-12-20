@@ -43,7 +43,7 @@ namespace ChurrascoManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Description,Observation,Date,Amount")] Event @event)
+        public ActionResult Create([Bind(Include = "ID,Description,Observation,Date,SpentDrink,SpentFood")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace ChurrascoManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Description,Observation,Date,Amount")] Event @event)
+        public ActionResult Edit([Bind(Include = "ID,Description,Observation,Date,SpentDrink,SpentFood")] Event @event)
         {
             if (ModelState.IsValid)
             {

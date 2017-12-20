@@ -15,14 +15,43 @@
     <div class="col-md-offset-2 col-md-2">
         Com bebida
     </div>
-    <div class="col-md-6"><strong>R$ 30,00</strong></div>
+    <div class="col-md-6">
+        <strong>R$</strong>
+        <strong>
+            @if (Model.Enrollments.Count == 0)
+            {
+                @(Model.SpentDrink);
+            }
+            else
+            {
+                @(Model.SpentDrink / Model.Enrollments.Count);
+            }
+        </strong>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-offset-2 col-md-2">
         Sem bebida
     </div>
-    <div class="col-md-6"><strong>R$ 15,00</strong></div>
+    <div class="col-md-6">
+        <strong>R$</strong>
+        <strong>
+            @if (Model.Enrollments.Count() == 0)
+            {
+                @(Model.SpentFood)
+            }
+            else
+            {
+                @( Model.SpentFood / Model.Enrollments.Count(w => !w.Drink) )
+            }
+        </strong>
+    </div>
 </div>
+
+<div class="col-md-offset-10 col-md-2">
+    @Html.ActionLink("Adicionar Participante", "Create", "Enrollments", new { e = Model.ID }, null)
+</div>
+
 <br /><br />
 
 <div class="panel panel-default">
@@ -33,7 +62,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">Valor a ser arrecadado</div>
-            <div class="col-md-9">R$ @Html.DisplayFor(model => model.Amount)</div>
+            <div class="col-md-9">R$ @(Model.SpentDrink + Model.SpentFood)</div>
         </div>
         <div class="row">
             <div class="col-md-3">Valor já pago</div>
@@ -49,6 +78,7 @@
         </div>
     </div>
 </div>
+
 
 <h3>Participantes</h3>
 <table class="table table-striped">
