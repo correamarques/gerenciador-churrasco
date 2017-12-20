@@ -1,7 +1,9 @@
 ﻿@model ChurrascoManager.Models.Enrollment
+@using ChurrascoManager.Helpers;
 
 @{
-    ViewBag.Title = "Create";
+    var candEditEvent = String.IsNullOrEmpty(Request.Params["e"]);
+    var candEditPerson = String.IsNullOrEmpty(Request.Params["p"]);
 }
 
 <h1 class="text-center">@AppSettings.SystemTitle</h1>
@@ -18,15 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EventID, "EventID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @if (String.IsNullOrEmpty(Request.Params["e"]))
-                {
-                    @Html.DropDownList("EventID", (SelectList)ViewBag.EventList, htmlAttributes: new { @class = "form-control" })
-                }
-                else
-                {
-                    @Html.DropDownList("EventID", (SelectList)ViewBag.EventList, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
-                }
-
+                @Html.DropDownList("EventID", (SelectList)ViewBag.EventList, new { @class = "form-control" }, candEditEvent)
                 @Html.ValidationMessageFor(model => model.EventID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,14 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PersonID, "PersonID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @if (String.IsNullOrEmpty(Request.Params["p"]))
-                {
-                    @Html.DropDownList("PersonID", (SelectList)ViewBag.PersonList, htmlAttributes: new { @class = "form-control" })
-                }
-                else
-                {
-                    @Html.DropDownList("PersonID", (SelectList)ViewBag.PersonList, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
-                }
+                @Html.DropDownList("PersonID", (SelectList)ViewBag.PersonList, new { @class = "form-control" }, candEditPerson)
                 @Html.ValidationMessageFor(model => model.PersonID, "", new { @class = "text-danger" })
             </div>
         </div>
