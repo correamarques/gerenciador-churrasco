@@ -66,7 +66,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">Valor já pago</div>
-            <div class="col-md-9">R$ @Model.Enrollments.Where(e => e.Paid).Sum(e => e.Amount)</div>
+            <div class="col-md-9">R$ @Model.Enrollments.Sum(e => e.Amount)</div>
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-2">Total de bebuns</div>

@@ -55,9 +55,12 @@ namespace ChurrascoManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (enrollment.Amount > 0 && !enrollment.Paid)
+                    enrollment.Paid = true;
+
                 db.Enrollments.Add(enrollment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Events", new { id = enrollment.EventID});
             }
 
             ViewBag.EventList = new SelectList(db.Events, "ID", "Description", enrollment.EventID);
