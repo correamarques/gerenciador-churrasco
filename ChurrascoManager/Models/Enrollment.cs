@@ -8,6 +8,7 @@
         public bool Paid { get; set; }
         public bool Drink { get; set; }
         public decimal Amount { get; set; }
+        public string Observation { get; set; }
 
         public virtual Person Person { get; set; }
         public virtual Event Event { get; set; }

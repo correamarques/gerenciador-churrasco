@@ -55,6 +55,7 @@ namespace ChurrascoManager.DAL
 
             #region Enrollments
             var enrollments = new List<Enrollment>();
+            string defaultObservationOfEnrollment = "Fico só até as ";
 
             foreach (var item in events)
             {
@@ -69,7 +70,9 @@ namespace ChurrascoManager.DAL
                         PersonID = person.ID,
                         Paid = random.Next(2) == 0,
                         Drink = random.Next(2) == 0,
-                        Amount = random.Next(10, 60)
+                        Amount = random.Next(10, 60),
+                        // adiciona uma observação randomica
+                        Observation = person.ID % 2 == 1 ? defaultObservationOfEnrollment + random.Next(24) : null
                     });
                 }
             }
