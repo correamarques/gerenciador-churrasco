@@ -72,7 +72,7 @@
                 <td><input type="checkbox" @(item.Paid ? "checked" : "") disabled="disabled" /> </td>
                 <td>@item.Observation</td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", "Enrollments", new { id = item.ID }, null) |
+                    @Html.ActionLink("Editar", "Edit", "Enrollments", new { id = item.ID, p = item.PersonID, e = item.EventID }, null) |
                     @Html.ActionLink("Detalhes", "Details", "Enrollments", new { id = item.ID }, null) |
                     @Html.ActionLink("Delete", "Delete", "Enrollments", new { id = item.ID }, null)
                 </td>

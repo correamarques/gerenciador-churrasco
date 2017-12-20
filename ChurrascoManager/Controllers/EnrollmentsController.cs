@@ -60,8 +60,8 @@ namespace ChurrascoManager.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventID = new SelectList(db.Events, "ID", "Description", enrollment.EventID);
-            ViewBag.PersonID = new SelectList(db.Persons, "ID", "Name", enrollment.PersonID);
+            ViewBag.EventList = new SelectList(db.Events, "ID", "Description", enrollment.EventID);
+            ViewBag.PersonList = new SelectList(db.Persons, "ID", "Name", enrollment.PersonID);
             return View(enrollment);
         }
 
@@ -77,8 +77,8 @@ namespace ChurrascoManager.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EventID = new SelectList(db.Events, "ID", "Description", enrollment.EventID);
-            ViewBag.PersonID = new SelectList(db.Persons, "ID", "Name", enrollment.PersonID);
+            ViewBag.EventList = new SelectList(db.Events, "ID", "Description", enrollment.EventID);
+            ViewBag.PersonList = new SelectList(db.Persons, "ID", "Name", enrollment.PersonID);
             return View(enrollment);
         }
 
@@ -95,8 +95,8 @@ namespace ChurrascoManager.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EventID = new SelectList(db.Events, "ID", "Description", enrollment.EventID);
-            ViewBag.PersonID = new SelectList(db.Persons, "ID", "Name", enrollment.PersonID);
+            ViewBag.EventList = new SelectList(db.Events, "ID", "Description", enrollment.EventID);
+            ViewBag.PersonList = new SelectList(db.Persons, "ID", "Name", enrollment.PersonID);
             return View(enrollment);
         }
 

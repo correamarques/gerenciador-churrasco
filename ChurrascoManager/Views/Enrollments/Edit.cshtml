@@ -1,7 +1,10 @@
 ﻿@model ChurrascoManager.Models.Enrollment
+@using ChurrascoManager.Helpers;
 
 @{
     ViewBag.Title = "Edit";
+    var candEditEvent = String.IsNullOrEmpty(Request.Params["e"]);
+    var candEditPerson = String.IsNullOrEmpty(Request.Params["p"]);
 }
 
 <h1 class="text-center">@AppSettings.SystemTitle</h1>
@@ -10,7 +13,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Enrollment</h4>
         <hr />
@@ -20,7 +23,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EventID, "EventID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("EventID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("EventID", (SelectList)ViewBag.EventList, new { @class = "form-control" }, candEditEvent)
                 @Html.ValidationMessageFor(model => model.EventID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +31,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PersonID, "PersonID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("PersonID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("PersonID", (SelectList)ViewBag.PersonList, new { @class = "form-control" }, candEditPerson)
                 @Html.ValidationMessageFor(model => model.PersonID, "", new { @class = "text-danger" })
             </div>
         </div>
