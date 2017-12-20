@@ -23,31 +23,55 @@
 </div>
 <br /><br />
 
-      <div class="panel panel-default">
-          <div class="panel-body">
-              <div class="row">
-                  <div class="col-md-3">Número de participantes</div>
-                  <div class="col-md-9">@Html.DisplayFor(model => model.Enrollments.Count)</div>
-              </div>
-              <div class="row">
-                  <div class="col-md-3">Valor a ser arrecadado</div>
-                  <div class="col-md-9">R$ @Html.DisplayFor(model => model.Amount)</div>
-              </div>
-              <div class="row">
-                  <div class="col-md-3">Valor já pago</div>
-                  <div class="col-md-9">R$ @Model.Enrollments.Where(e => e.Paid).Sum(e => e.Amount)</div>
-              </div>
-              <div class="row">
-                  <div class="col-md-offset-1 col-md-2">Total de bebuns</div>
-                  <div class="col-md-8">@Model.Enrollments.Count(e => e.Drink)</div>
-              </div>
-              <div class="row">
-                  <div class="col-md-offset-1 col-md-2">Total de saud&aacute;veis</div>
-                  <div class="col-md-8">@Model.Enrollments.Count(e => !e.Drink)</div>
-              </div>
-          </div>
-      </div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">Número de participantes</div>
+            <div class="col-md-9">@Html.DisplayFor(model => model.Enrollments.Count)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">Valor a ser arrecadado</div>
+            <div class="col-md-9">R$ @Html.DisplayFor(model => model.Amount)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">Valor já pago</div>
+            <div class="col-md-9">R$ @Model.Enrollments.Where(e => e.Paid).Sum(e => e.Amount)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-2">Total de bebuns</div>
+            <div class="col-md-8">@Model.Enrollments.Count(e => e.Drink)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-2">Total de saud&aacute;veis</div>
+            <div class="col-md-8">@Model.Enrollments.Count(e => !e.Drink)</div>
+        </div>
+    </div>
+</div>
 
+<h3>Participantes</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Contribuição</th>
+            <th scope="col">Bebida</th>
+            <th scope="col">Pago</th>
+            <th scope="col">Observação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model.Enrollments)
+        {
+            <tr>
+                <td>@item.Person.Name</td>
+                <td>@item.Amount</td>
+                <td>@(item.Drink ? "Sim" : "Não")</td>
+                <td>@(item.Paid ? "Sim" : "Não") </td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
