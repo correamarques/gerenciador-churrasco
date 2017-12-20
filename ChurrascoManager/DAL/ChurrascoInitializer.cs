@@ -10,6 +10,8 @@ namespace ChurrascoManager.DAL
     {
         protected override void Seed(ChurrascoContext context)
         {
+            Random random = new Random();
+
             #region Persons
             var persons = new List<Person>
             {
@@ -30,9 +32,9 @@ namespace ChurrascoManager.DAL
             string defaultObservationOfEvent = "Vamos comprar as coisas tudo no mercado";
             var events = new List<Event>
             {
-                new Event { Date = DateTime.Parse("2017-12-13"), Description = "Churraso final de ano", Observation = defaultObservationOfEvent },
-                new Event { Date = DateTime.Parse("2018-01-05"), Description = "Churraso de ano novo", Observation = defaultObservationOfEvent },
-                new Event { Date = DateTime.Parse("2018-04-17"), Description = "Aniversário do Fabian", Observation = defaultObservationOfEvent },
+                new Event { Date = DateTime.Parse("2017-12-13"), Description = "Churraso final de ano", Observation = defaultObservationOfEvent, Amount = random.Next(120, 380) },
+                new Event { Date = DateTime.Parse("2018-01-05"), Description = "Churraso de ano novo", Observation = defaultObservationOfEvent, Amount = random.Next(120, 380) },
+                new Event { Date = DateTime.Parse("2018-04-17"), Description = "Aniversário do Fabian", Observation = defaultObservationOfEvent, Amount = random.Next(120, 380) },
             };
 
             // company month birthdays
@@ -43,7 +45,8 @@ namespace ChurrascoManager.DAL
                 {
                     Date = Helpers.hDateTime.GetLastFridayOfTheMonth(DateTime.Parse(dateToParse)),
                     Description = "Churraso aniversariantes do mês",
-                    Observation = defaultObservationOfEvent
+                    Observation = defaultObservationOfEvent,
+                    Amount = random.Next(120, 380)
                 });
             }
             events.ForEach(e => context.Events.Add(e));
@@ -56,7 +59,6 @@ namespace ChurrascoManager.DAL
             foreach (var item in events)
             {
                 // vamos randomizar a quantidade de participantes em cada evento
-                Random random = new Random();
                 var participants = persons.Take(random.Next(3, persons.Count));
 
                 foreach (var person in participants)

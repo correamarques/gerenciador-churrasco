@@ -11,7 +11,8 @@ namespace ChurrascoManager.Models
         public string Description { get; set; }
         [Display(Name = "Observação"), DataType(DataType.MultilineText)]
         public string Observation { get; set; }
-
+        [Display(Name = "Valor gasto")]
+        public decimal Amount { get; set; }
         [Display(Name = "Data"), DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
 

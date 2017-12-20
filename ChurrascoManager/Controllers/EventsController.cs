@@ -43,13 +43,13 @@ namespace ChurrascoManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Description,Observation,Date")] Event @event)
+        public ActionResult Create([Bind(Include = "ID,Description,Observation,Date,Amount")] Event @event)
         {
             if (ModelState.IsValid)
             {
                 db.Events.Add(@event);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Events", new { id = @event.ID });
             }
 
             return View(@event);
@@ -75,7 +75,7 @@ namespace ChurrascoManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Description,Observation,Date")] Event @event)
+        public ActionResult Edit([Bind(Include = "ID,Description,Observation,Date,Amount")] Event @event)
         {
             if (ModelState.IsValid)
             {
