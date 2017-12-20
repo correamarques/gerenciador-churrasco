@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ChurrascoManager.DAL
@@ -29,7 +30,12 @@ namespace ChurrascoManager.DAL
             #endregion
 
             #region Events
-            string defaultObservationOfEvent = "Vamos comprar as coisas tudo no mercado";
+            StringBuilder lorem = new StringBuilder();
+            lorem.Append("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ");
+            lorem.Append("Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ");
+            lorem.Append("Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ");
+            lorem.Append("Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            string defaultObservationOfEvent = lorem.ToString();
             var events = new List<Event>
             {
                 new Event { Date = DateTime.Parse("2017-12-13"), Description = "Churraso final de ano", Observation = defaultObservationOfEvent, Amount = random.Next(120, 380) },
