@@ -4,8 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h1 class="text-center">@Html.DisplayFor(model => model.Description)</h1>
-<h3>@Html.DisplayNameFor(model => model.Date): @Html.DisplayFor(model => model.Date)</h3>
+<h1 class="text-center">@AppSettings.SystemTitle</h1>
+
+<h3 class="text-center">@Html.DisplayFor(model => model.Description)</h3>
+<h4>@Html.DisplayNameFor(model => model.Date): @Html.DisplayFor(model => model.Date)</h4>
 <p>@Html.DisplayFor(model => model.Observation)</p>
 
 <div class="col-md-offset-1 col-md-11">Valor de contribuição sugerido:</div>
