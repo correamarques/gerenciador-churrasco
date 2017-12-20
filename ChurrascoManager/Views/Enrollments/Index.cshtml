@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ChurrascoManager.Models.Enrollment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Drink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Drink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observation)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
