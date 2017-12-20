@@ -59,6 +59,7 @@
             <th scope="col">Bebida</th>
             <th scope="col">Pago</th>
             <th scope="col">Observação</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -70,6 +71,11 @@
                 <td>@(item.Drink ? "Sim" : "Não")</td>
                 <td><input type="checkbox" @(item.Paid ? "checked" : "") disabled="disabled" /> </td>
                 <td>@item.Observation</td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", "Enrollments", new { id = item.ID }, null) |
+                    @Html.ActionLink("Detalhes", "Details", "Enrollments", new { id = item.ID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Enrollments", new { id = item.ID }, null)
+                </td>
             </tr>
         }
     </tbody>
