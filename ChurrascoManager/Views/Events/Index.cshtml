@@ -1,4 +1,6 @@
-﻿@model IEnumerable<ChurrascoManager.Models.Event>
+﻿@model PagedList.IPagedList<ChurrascoManager.Models.Event>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -11,8 +13,8 @@
 </p>
 <table class="table">
     <tr>
-        <th>@Html.DisplayNameFor(model => model.Date)</th>
-        <th>@Html.DisplayNameFor(model => model.Description)</th>
+        <th>Data</th>
+        <th>Descri&ccedil;&atilde;o</th>
         <th>Participantes</th>
         <th>Total arrecadado</th>
         <th></th>
@@ -20,18 +22,21 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>@Html.DisplayFor(modelItem => item.Date)</td>
-        <td>@Html.DisplayFor(modelItem => item.Description)</td>
-        <td>@item.Enrollments.Count</td>
-        <td>@item.Enrollments.Sum(e => e.Amount) </td>
-        <td></td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Date)</td>
+            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+            <td>@item.Enrollments.Count</td>
+            <td>@item.Enrollments.Sum(e => e.Amount) </td>
+            <td></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
     }
 
 </table>
+<br />
+P&aacute;gina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

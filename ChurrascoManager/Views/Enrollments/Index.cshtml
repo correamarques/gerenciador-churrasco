@@ -1,4 +1,6 @@
-﻿@model IEnumerable<ChurrascoManager.Models.Enrollment>
+﻿@model PagedList.IPagedList<ChurrascoManager.Models.Enrollment>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -12,22 +14,22 @@
 <table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Event.Description)
+            Descri&ccedil;&atilde;o
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Person.Name)
+            Nome
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Paid)
+            Pago?
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Drink)
+            Vai beber?
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            Valor pago
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Observation)
+            Oberva&ccedil;&atilde;o
         </th>
         <th></th>
     </tr>
@@ -68,3 +70,6 @@
     }
 
 </table>
+<br />
+P&aacute;gina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

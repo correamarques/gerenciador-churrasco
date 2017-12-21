@@ -1,5 +1,6 @@
 ﻿using ChurrascoManager.DAL;
 using ChurrascoManager.Models;
+using PagedList;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -12,9 +13,13 @@ namespace ChurrascoManager.Controllers
         private ChurrascoContext db = new ChurrascoContext();
 
         // GET: Person
-        public ActionResult Index()
+        public ViewResult Index(int? page)
         {
-            return View(db.Persons.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            var persons = db.Persons.ToList();
+            return View(persons.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Person/Details/5

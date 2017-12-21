@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using ChurrascoManager.DAL;
 using ChurrascoManager.Models;
 
@@ -16,10 +17,13 @@ namespace ChurrascoManager.Controllers
         private ChurrascoContext db = new ChurrascoContext();
 
         // GET: Enrollments
-        public ActionResult Index()
+        public ViewResult Index(int? page)
         {
-            var enrollments = db.Enrollments.Include(e => e.Event).Include(e => e.Person);
-            return View(enrollments.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            var enrollments = db.Enrollments.Include(e => e.Event).Include(e => e.Person).ToList();
+            return View(enrollments.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Enrollments/Details/5
