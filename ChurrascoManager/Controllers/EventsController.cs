@@ -82,7 +82,7 @@ namespace ChurrascoManager.Controllers
             {
                 db.Entry(@event).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Events", new { id = @event.ID });
             }
             return View(@event);
         }
