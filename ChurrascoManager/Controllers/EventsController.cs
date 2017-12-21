@@ -20,6 +20,7 @@ namespace ChurrascoManager.Controllers
         // GET: Events/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.Persons = db.Persons.Count();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

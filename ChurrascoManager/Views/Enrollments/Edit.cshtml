@@ -23,6 +23,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EventID, "EventID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @if (!candEditEvent)
+                {
+                    @Html.Hidden("EventID", Request.Params["e"])
+                }
                 @Html.DropDownList("EventID", (SelectList)ViewBag.EventList, new { @class = "form-control" }, candEditEvent)
                 @Html.ValidationMessageFor(model => model.EventID, "", new { @class = "text-danger" })
             </div>
@@ -31,6 +35,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PersonID, "PersonID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @if (!candEditPerson)
+                {
+                    @Html.Hidden("PersonID", Request.Params["p"])
+                }
                 @Html.DropDownList("PersonID", (SelectList)ViewBag.PersonList, new { @class = "form-control" }, candEditPerson)
                 @Html.ValidationMessageFor(model => model.PersonID, "", new { @class = "text-danger" })
             </div>

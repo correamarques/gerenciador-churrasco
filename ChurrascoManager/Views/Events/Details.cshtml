@@ -16,17 +16,7 @@
         Com bebida
     </div>
     <div class="col-md-6">
-        <strong>R$</strong>
-        <strong>
-            @if (Model.Enrollments.Count == 0)
-            {
-                @(Model.SpentDrink);
-            }
-            else
-            {
-                @(Model.SpentDrink / Model.Enrollments.Count);
-            }
-        </strong>
+        <strong>R$ @(Model.Amount / ViewBag.Persons)</strong>
     </div>
 </div>
 <div class="row">
@@ -34,17 +24,7 @@
         Sem bebida
     </div>
     <div class="col-md-6">
-        <strong>R$</strong>
-        <strong>
-            @if (Model.Enrollments.Count() == 0)
-            {
-                @(Model.SpentFood)
-            }
-            else
-            {
-                @( Model.SpentFood / Model.Enrollments.Count(w => !w.Drink) )
-            }
-        </strong>
+        <strong>R$ @(Model.SpentFood / ViewBag.Persons)</strong>
     </div>
 </div>
 
@@ -103,7 +83,6 @@
                 <td>@item.Observation</td>
                 <td>
                     @Html.ActionLink("Editar", "Edit", "Enrollments", new { id = item.ID, p = item.PersonID, e = item.EventID }, null) |
-                    @Html.ActionLink("Detalhes", "Details", "Enrollments", new { id = item.ID }, null) |
                     @Html.ActionLink("Delete", "Delete", "Enrollments", new { id = item.ID }, null)
                 </td>
             </tr>

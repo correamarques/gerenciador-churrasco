@@ -96,7 +96,7 @@ namespace ChurrascoManager.Controllers
             {
                 db.Entry(enrollment).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Events", new { id = enrollment.EventID });
             }
             ViewBag.EventList = new SelectList(db.Events, "ID", "Description", enrollment.EventID);
             ViewBag.PersonList = new SelectList(db.Persons, "ID", "Name", enrollment.PersonID);
